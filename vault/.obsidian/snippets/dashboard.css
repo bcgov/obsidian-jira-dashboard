@@ -43,6 +43,7 @@
   --table-header-background: rgba(255, 255, 255, 0.04);
   --table-row-background-hover: rgba(255, 255, 255, 0.05);
   --code-background: rgba(255, 255, 255, 0.06);
+  --code-normal: var(--dash-text); /* the base theme resolves this at body level, so the light theme's dark code text would vanish on the panels */
   --font-text: -apple-system, "Inter", "SF Pro Text", "Segoe UI", sans-serif;
   --font-monospace: "SF Mono", "JetBrains Mono", Menlo, monospace;
   color: var(--dash-text);
