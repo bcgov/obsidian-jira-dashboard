@@ -53,11 +53,13 @@ Further down the same note: one column per workstream status (a Bases card view 
 
 - Obsidian 1.9 or newer with the core **Bases** plugin enabled (the board views are a `.base` file; no community plugin needed)
 - One agent, logged in: [Claude Code](https://docs.anthropic.com/en/docs/claude-code) or [GitHub Copilot CLI](https://docs.github.com/copilot/concepts/agents/about-copilot-cli). Copilot in VS Code works for interactive runs.
-- MCP servers for Jira, and optionally Bitbucket and GitHub, configured in that agent. The workflows name tools as Jira `search_issues`, Bitbucket `get_pr_diff` and so on; the adapters spell them `mcp__jira__search_issues` (Claude) or `jira/search_issues` (Copilot). If your servers have other names, edit the adapters. `jira list_deployment_slots` is specific to a deployment-booking add-on and can be removed.
+- [RAVEN](https://github.com/bcgov/raven), built and configured for your Jira. **RAVEN is required.** The workflows call its `jira`, `bitbucket` and `github` MCP servers by their tool names, and its login keeps the Jira session alive. Follow RAVEN's README (Quick Start, then Configure Authentication) and register its servers in your agent as `jira`, `bitbucket` and `github`. Another Jira MCP server is not a drop-in: you would have to rename every tool in `.claude/commands/`, `.github/agents/` and `bin/standup-daily.sh`. `jira list_deployment_slots` needs the NRS deployment-booking add-on; drop it if your Jira has none.
 - macOS for the launchd job (the workflows themselves run anywhere the agent does)
 - `jq` and GNU `timeout` (`brew install jq coreutils`)
 
 ## Set up
+
+Install [RAVEN](https://github.com/bcgov/raven) first and check that your agent can call `jira search_issues`. Nothing below works without it.
 
 1. Clone this repo to `~/Projects/workflow`.
 2. Replace the placeholders. Every one of them is listed here; this finds any you missed:
@@ -77,7 +79,7 @@ Further down the same note: one column per workstream status (a Bases card view 
    | `OneDrive-YourOrg` | only if you use the email step |
 3. Copy `vault/Workflow/` into your vault as `Workflow/`, and `vault/.obsidian/snippets/dashboard.css` into your vault's `.obsidian/snippets/`. In Obsidian: Settings, Appearance, CSS snippets, enable `dashboard`.
 4. Edit `Workflow/Team settings.md`: your people, your area rules, the repos to watch for PRs.
-5. `cp config.env.example config.env`, set `AGENT` to `claude` or `copilot`, and fill in the rest.
+5. `cp config.env.example config.env`, set `AGENT` to `claude` or `copilot`, set `AUTH_CMD` to RAVEN's login command, and fill in the rest.
 6. Run the standup once by hand and check the Dashboard:
    - Claude Code: open this folder and type `/standup`.
    - Copilot CLI: `copilot --agent standup -p "run" --add-dir "$HOME/Documents/Obsidian Vault/Workflow"` from this folder.

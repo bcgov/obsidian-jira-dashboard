@@ -15,7 +15,7 @@ The prompt files are the source of truth. The adapters (`.claude/commands/*.md`,
 
 ## Tool naming
 
-The prompts name MCP tools as `<server> <tool>`, for example Jira `search_issues` or Bitbucket `get_pr_diff`. The same tool is spelled `mcp__jira__search_issues` in Claude Code and `jira/search_issues` in Copilot. The server names (`jira`, `bitbucket`, `github`) are whatever you called your MCP servers; if yours differ, change the adapters' tool lists, not the prompts. `jira list_deployment_slots` is specific to a deployment-booking add-on; drop it if your Jira has no such tool.
+The prompts name MCP tools as `<server> <tool>`, for example Jira `search_issues` or Bitbucket `get_pr_diff`. The same tool is spelled `mcp__jira__search_issues` in Claude Code and `jira/search_issues` in Copilot. The servers are [RAVEN](https://github.com/bcgov/raven)'s, registered as `jira`, `bitbucket` and `github`; if you registered them under other names, change the adapters' tool lists, not the prompts. `jira list_deployment_slots` is specific to a deployment-booking add-on; drop it if your Jira has no such tool.
 
 ## Where the live data is
 
