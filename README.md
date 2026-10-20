@@ -2,6 +2,10 @@
 
 [![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md) [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
+![The Dashboard note in Obsidian, filled with example data: today's priorities, PRs to review, nudges, the approval queue and the team summary](docs/dashboard-top.png)
+
+*Example data. Every name, ticket, repository and host in the screenshots is made up.*
+
 A one-screen personal work dashboard in Obsidian, refreshed every morning by an AI agent (Claude Code or GitHub Copilot) from Jira, your workstream notes and your inbox. Jira stays the system of record for anything the team can see. The vault holds only what Jira cannot: your next step per workstream, what you are waiting on from others, and uncommitted captures.
 
 Nothing in the daily refresh writes to Jira. Changes to your board land in `Proposed.md` as checkboxes; you tick the ones you agree with. Jira comments are drafted, never posted, until you run the `apply` workflow and confirm the exact calls.
@@ -20,6 +24,10 @@ vault/                    skeleton notes and the dashboard CSS to copy into your
 ```
 
 Edit a workflow in `prompts/`; the adapters only declare tools and point at it.
+
+Further down the same note: one column per workstream status (a Bases card view over the notes in `vault/Workflow/Workstreams/`), upcoming dates, small tasks and what you are waiting on from others.
+
+![The lower half of the Dashboard: four kanban columns of workstream cards, then Upcoming, Tasks and Waiting on others tiles, and the links row](docs/dashboard-board.png)
 
 ## What is in here
 
