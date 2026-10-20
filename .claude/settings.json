@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(//Users/YOUR_USER/Documents/Obsidian Vault/Workflow/Email tasks.md)",
+      "Read(//Users/YOUR_USER/Library/CloudStorage/OneDrive-YourOrg/Workflow-mail/**)"
+    ]
+  }
+}

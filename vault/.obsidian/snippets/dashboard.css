@@ -1,0 +1,229 @@
+/* =========================================================
+   Workflow dashboard — nebula glass
+   Applies to notes with `cssclasses: [dashboard]`.
+   Structure: one outer [!dashboard] callout; nested callouts
+   are tiles on a 12-column grid, width from [!type|span-N].
+   ========================================================= */
+.dashboard {
+  --dash-text: #e9e9f4;
+  --dash-muted: #a4a7bd;
+  --dash-faint: #6d7089;
+  --dash-panel: rgba(14, 10, 30, 0.62);
+  --dash-panel-hi: rgba(30, 24, 56, 0.55);
+  --dash-border: rgba(255, 255, 255, 0.09);
+  --dash-border-hi: rgba(255, 255, 255, 0.2);
+  --dash-link: #a6bdff;
+  --dash-amber: 245, 158, 11;
+  --dash-red: 244, 63, 94;
+  --dash-green: 34, 197, 94;
+  --dash-blue: 120, 150, 255;
+
+  --file-line-width: 1600px;
+  --background-primary: #0e0822;
+  --background-primary-alt: #150c30;
+  --background-secondary: #150c30;
+  --background-modifier-border: var(--dash-border);
+  --background-modifier-hover: rgba(255, 255, 255, 0.06);
+  --text-normal: var(--dash-text);
+  --text-muted: var(--dash-muted);
+  --text-faint: var(--dash-faint);
+  --text-accent: var(--dash-link);
+  --text-selection: rgba(120, 150, 255, 0.3);
+  --link-color: var(--dash-link);
+  --link-color-hover: #d6e2ff;
+  --link-external-color: var(--dash-link);
+  --link-external-color-hover: #d6e2ff;
+  --link-decoration: none;
+  --link-external-decoration: none;
+  --checkbox-color: rgb(var(--dash-blue));
+  --checkbox-color-hover: #ffffff;
+  --checkbox-border-color: rgba(255, 255, 255, 0.35);
+  --checkbox-marker-color: #0e0822;
+  --table-border-color: rgba(255, 255, 255, 0.08);
+  --table-header-background: rgba(255, 255, 255, 0.04);
+  --table-row-background-hover: rgba(255, 255, 255, 0.05);
+  --code-background: rgba(255, 255, 255, 0.06);
+  --font-text: -apple-system, "Inter", "SF Pro Text", "Segoe UI", sans-serif;
+  --font-monospace: "SF Mono", "JetBrains Mono", Menlo, monospace;
+  color: var(--dash-text);
+}
+
+/* ---------- backdrop: nebula + stars (pure CSS, no image) ---------- */
+.dashboard.markdown-source-view,
+.dashboard.markdown-preview-view {
+  background-color: #0e0822;
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 51%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1px 1px at 10% 69%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 75% 8%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1px 1px at 5% 12%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 9% 31%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(2px 2px at 55% 8%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1px 1px at 29% 81%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(2px 2px at 8% 74%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 7% 29%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(2px 2px at 18% 38%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1px 1px at 70% 16%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 72% 88%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(1px 1px at 75% 74%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1px 1px at 48% 13%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(2px 2px at 9% 73%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(2px 2px at 27% 64%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(2px 2px at 55% 41%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(2px 2px at 59% 47%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1px 1px at 24% 90%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(1px 1px at 74% 39%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 44% 94%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 78% 10%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(2px 2px at 54% 22%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1px 1px at 63% 54%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(2px 2px at 10% 98%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(2px 2px at 41% 44%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 77% 64%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 9% 12%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 90% 86%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(1px 1px at 94% 90%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(2px 2px at 74% 88%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 92% 50%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 3% 60%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1px 1px at 79% 15%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1px 1px at 28% 99%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1px 1px at 95% 32%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 64% 11%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 52% 71%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1px 1px at 56% 71%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(2px 2px at 54% 46%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 30% 20%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1px 1px at 2% 63%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1px 1px at 34% 37%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(1px 1px at 54% 69%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(2px 2px at 73% 41%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(2px 2px at 66% 80%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(2px 2px at 95% 7%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(2px 2px at 72% 51%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 51% 14%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(2px 2px at 52% 8%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(1px 1px at 27% 57%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(1px 1px at 44% 77%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(1px 1px at 1% 73%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(2px 2px at 13% 47%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1px 1px at 10% 27%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 20% 82%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 78% 47%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1px 1px at 15% 63%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 62% 40%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(1px 1px at 14% 96%, rgba(255,255,255,0.7) 50%, transparent 55%), radial-gradient(2px 2px at 34% 62%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1px 1px at 67% 3%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(2px 2px at 47% 19%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(2px 2px at 4% 98%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 83% 12%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 67% 47%, rgba(255,255,255,0.9) 50%, transparent 55%), radial-gradient(1.5px 1.5px at 99% 29%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(2px 2px at 65% 43%, rgba(255,255,255,0.5) 50%, transparent 55%), radial-gradient(1px 1px at 79% 98%, rgba(255,255,255,0.9) 50%, transparent 55%),
+    radial-gradient(1100px 720px at 6% 10%, rgba(168, 56, 214, 0.55), transparent 62%),
+    radial-gradient(900px 640px at 18% 96%, rgba(226, 40, 84, 0.55), transparent 62%),
+    radial-gradient(1000px 720px at 90% 16%, rgba(46, 84, 226, 0.52), transparent 64%),
+    radial-gradient(760px 560px at 78% 92%, rgba(120, 40, 170, 0.45), transparent 62%),
+    radial-gradient(240px 240px at 47% 30%, rgba(255, 150, 60, 0.32), transparent 70%),
+    linear-gradient(180deg, #0a0520 0%, #160a30 55%, #1c0b2c 100%);
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.dashboard .cm-editor, .dashboard .cm-scroller, .dashboard .cm-content { background: transparent; }
+.dashboard .inline-title, .dashboard .metadata-container { display: none; }
+.dashboard .markdown-preview-sizer { padding-bottom: 24px !important; }
+.dashboard .cm-callout, .dashboard .cm-embed-block.cm-callout { max-width: 100%; }
+
+/* ---------- every callout: no blending, no rail ---------- */
+.dashboard .callout {
+  mix-blend-mode: normal;
+  --callout-blend-mode: normal;
+  isolation: isolate;
+  --callout-color: 255, 255, 255;
+  background: var(--dash-panel);
+  border: 1px solid var(--dash-border);
+  border-radius: 14px;
+  padding: 10px 14px 12px;
+  margin: 0;
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.dashboard .callout-title {
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #cfd1e0;
+  padding: 0 0 6px;
+  gap: 6px;
+}
+.dashboard .callout-icon { display: none; }
+.dashboard .callout[data-callout="warning"] .callout-title { color: rgb(var(--dash-amber)); }
+.dashboard .callout-content p, .dashboard .callout-content li { margin: 3px 0; font-size: 0.9em; line-height: 1.45; }
+.dashboard .callout-content ol, .dashboard .callout-content ul { margin: 2px 0; padding-left: 1.25em; }
+.dashboard .callout-content strong { color: #ffffff; font-weight: 600; }
+.dashboard .callout .callout-content { max-height: 30vh; overflow: auto; padding-right: 2px; }
+.dashboard .callout .callout-content > p:first-child { margin-top: 0; }
+.dashboard .callout .callout-content > :last-child { margin-bottom: 0; }
+
+/* ---------- outer dashboard callout = page + big centred title ---------- */
+.dashboard .callout[data-callout="dashboard"] {
+  background: transparent; border: 0; box-shadow: none; padding: 0;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+.dashboard .callout[data-callout="dashboard"] > .callout-title {
+  justify-content: center;
+  font-size: 2.1em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  padding: 14px 0 18px;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+}
+.dashboard .callout[data-callout="dashboard"] > .callout-title .callout-icon { display: flex; color: #c9a6ff; }
+.dashboard .callout[data-callout="dashboard"] > .callout-title .callout-icon svg { width: 30px; height: 30px; }
+.dashboard .callout[data-callout="dashboard"] { --callout-icon: lucide-orbit; }
+.dashboard .callout[data-callout="dashboard"] > .callout-content {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 12px 14px;
+  align-items: start;
+  max-height: none; overflow: visible; padding: 0;
+}
+.dashboard .callout[data-callout="dashboard"] > .callout-content > * { grid-column: 1 / -1; min-width: 0; margin: 0; }
+.dashboard .callout[data-callout="dashboard"] > .callout-content > .callout[data-callout-metadata~="span-2"]  { grid-column: span 2; }
+.dashboard .callout[data-callout="dashboard"] > .callout-content > .callout[data-callout-metadata~="span-3"]  { grid-column: span 3; }
+.dashboard .callout[data-callout="dashboard"] > .callout-content > .callout[data-callout-metadata~="span-4"]  { grid-column: span 4; }
+.dashboard .callout[data-callout="dashboard"] > .callout-content > .callout[data-callout-metadata~="span-5"]  { grid-column: span 5; }
+.dashboard .callout[data-callout="dashboard"] > .callout-content > .callout[data-callout-metadata~="span-6"]  { grid-column: span 6; }
+.dashboard .callout[data-callout="dashboard"] > .callout-content > .callout[data-callout-metadata~="span-8"]  { grid-column: span 8; }
+.dashboard .callout[data-callout="dashboard"] > .callout-content > .callout[data-callout-metadata~="span-12"] { grid-column: span 12; }
+.dashboard .callout[data-callout="dashboard"] > .callout-content > .callout { height: 100%; box-sizing: border-box; }
+.dashboard .callout[data-callout-metadata~="span-12"] > .callout-content { max-height: 56vh; }
+
+/* folded tile: keep it a slim bar */
+.dashboard .callout.is-collapsed { padding-bottom: 10px; }
+.dashboard .callout.is-collapsible .callout-title { cursor: pointer; }
+.dashboard .callout-fold { color: var(--dash-faint); }
+
+/* ---------- embeds inside tiles: no second frame ---------- */
+.dashboard .callout .bases-embed, .dashboard .callout .bases-view, .dashboard .callout .markdown-embed {
+  background: transparent; border: 0; box-shadow: none; padding: 0; margin: 0;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+.dashboard .markdown-embed .markdown-embed-title { display: none; }
+.dashboard .markdown-embed .markdown-embed-link { opacity: 0.3; }
+.dashboard .markdown-embed h2 { font-size: 0.72em; font-weight: 600; color: var(--dash-muted); margin: 6px 0 2px; }
+.dashboard .callout .markdown-embed:first-child h2 { margin-top: 0; }
+.dashboard .markdown-embed li { margin: 3px 0; font-size: 0.9em; }
+.dashboard .markdown-embed li::marker { color: var(--dash-faint); }
+
+/* ---------- Bases: tables ---------- */
+.dashboard .bases-toolbar { opacity: 0.35; transition: opacity 0.15s; }
+.dashboard .callout:hover .bases-toolbar { opacity: 0.9; }
+.dashboard .bases-table-container { font-size: 0.86em; }
+.dashboard .bases-thead .bases-td, .dashboard .bases-header, .dashboard .bases-th {
+  font-size: 0.72em; font-weight: 600; color: var(--dash-muted);
+  background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--dash-border-hi);
+}
+.dashboard .bases-td { border-color: rgba(255, 255, 255, 0.07); padding: 6px 9px; vertical-align: top; }
+.dashboard .bases-tr:hover .bases-td { background: rgba(255, 255, 255, 0.05); }
+.dashboard .bases-table-active-cell { outline: 1px solid rgba(255, 255, 255, 0.35); }
+.dashboard .bases-rendered-value a, .dashboard .bases-table-container a { color: var(--dash-link); text-decoration: none; }
+.dashboard .bases-rendered-value a:hover, .dashboard .bases-table-container a:hover, .dashboard .callout-content a:hover { color: #d6e2ff; text-decoration: underline; text-underline-offset: 2px; }
+.dashboard .bases-group-heading { color: var(--dash-muted); font-size: 0.75em; font-weight: 600; }
+
+/* ---------- Bases: cards as kanban items ---------- */
+/* Colour and type only. Bases owns card layout: do not set display,
+   position, height, flex or white-space here, or cards collapse. */
+.dashboard .callout[data-callout="kanban"] .bases-toolbar { display: none; }
+.dashboard .bases-cards-container, .dashboard .bases-cards-group {
+  background: transparent; border: 0; box-shadow: none;
+}
+.dashboard .bases-cards-item {
+  --background-primary: var(--dash-panel-hi);
+  --background-secondary: var(--dash-panel-hi);
+  --background-primary-alt: var(--dash-panel-hi);
+  background-color: var(--dash-panel-hi);
+  color: var(--dash-text);
+  border: 1px solid var(--dash-border);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+.dashboard .bases-cards-item:hover { border-color: var(--dash-border-hi); }
+.dashboard .bases-cards-cover { display: none; }
+.dashboard .bases-cards-label {
+  font-size: 0.72em; font-weight: 600; color: var(--dash-faint);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.dashboard .bases-cards-property { font-size: 0.94em; color: var(--dash-text); }
+.dashboard .bases-cards-property a { color: var(--dash-link); }
+.dashboard .callout[data-callout="kanban"] .callout-title { font-size: 0.86em; }
+.dashboard .callout[data-callout="kanban"] > .callout-content { max-height: 40vh; }
+
+/* ---------- links tile: pill buttons ---------- */
+.dashboard .callout[data-callout="links"] .callout-content p { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.dashboard .callout[data-callout="links"] .callout-content a {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--dash-border);
+  color: #e6e6f0;
+  font-size: 0.86em;
+  font-weight: 500;
+  text-decoration: none;
+  background-image: none;
+  padding-right: 14px;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+.dashboard .callout[data-callout="links"] .callout-content a:hover {
+  background: rgba(255, 255, 255, 0.12); border-color: var(--dash-border-hi); transform: translateY(-1px); color: #fff;
+}
+
+/* ---------- misc ---------- */
+.dashboard input[type="checkbox"] { border-radius: 50%; }
+.dashboard .task-list-item.is-checked { color: var(--dash-faint); text-decoration: line-through; }
+.dashboard a.external-link { background-image: none; padding-right: 0; }
+.dashboard ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.18); border-radius: 8px; }
+.dashboard ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
+
+@media (max-width: 1000px) {
+  .dashboard .callout[data-callout="dashboard"] > .callout-content { grid-template-columns: 1fr; }
+  .dashboard .callout[data-callout="dashboard"] > .callout-content > .callout { grid-column: 1 / -1 !important; }
+  .dashboard .callout .callout-content { max-height: none; }
+}

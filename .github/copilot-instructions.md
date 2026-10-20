@@ -1,0 +1,1 @@
+Read `AGENTS.md` at the repository root and follow it before doing anything in this repository. The four workflows are custom agents in `.github/agents/`; each one reads its instructions from `prompts/`.

@@ -1,0 +1,45 @@
+---
+version: 1
+product_information:
+  product_name: Obsidian Jira dashboard
+  product_acronym: OJD
+  product_description: >-
+    A one-screen personal work dashboard in Obsidian, refreshed every morning by
+    an AI agent (Claude Code or GitHub Copilot) from Jira, per-workstream notes
+    and an inbox. Read-only against Jira; changes are proposed as checkboxes and
+    nothing is written to Jira without an explicit confirmation.
+  product_status: active
+  ministry:
+    - Citizens' Services
+  program_area: Connected Services BC
+  business_capabilities_standard:
+    - Other
+  product_urls: []
+  api_specifications: []
+data_management_roles:
+  product_owner: James Gagan
+  data_custodian: James Gagan
+product_technology_information:
+  hosting_platforms:
+    - Other
+  hosting_platforms_custom: Local developer workstation; no server deployment
+  backend_languages_version: []
+  backend_frameworks: []
+  frontend_languages: []
+  frontend_frameworks: []
+  data_storage_platforms: []
+  ci_cd_tools: []
+  # Listed explicitly as an empty array rather than omitted: the schema's
+  # conditional blocks match an absent key and then demand its *_custom partner.
+  spatial_mapping_technologies: []
+  other_tools: >-
+    Obsidian with the Bases core plugin, Claude Code, GitHub Copilot CLI,
+    Model Context Protocol servers for Jira, Bitbucket and GitHub, macOS
+    launchd, bash, jq
+product_external_dependencies:
+  identity_authorization:
+    - IDIR
+  common_components: []
+  notification_standard: []
+  other_dependencies: >-
+    Jira, Bitbucket, GitHub, Obsidian, an AI agent CLI with MCP support

@@ -1,0 +1,214 @@
+filters:
+  and:
+  - 'file.inFolder("Workflow/Workstreams")'
+  - 'file.hasTag("workstream")'
+formulas:
+  icon: 'if(status == "moving", "🟢", if(status == "waiting", "🟡", if(status == "stalled", "🔴", if(status == "done", "✅", "⚪"))))'
+  rank: 'if(status == "stalled", 0, if(status == "waiting", 1, if(status == "moving", 2, if(status == "parked", 3, 4))))'
+  idle: 'if(last_touch, ((number(today()) - number(last_touch)) / 86400000).floor(), "")'
+  stale: 'if(last_touch, last_touch < today() - "14d", false)'
+  soon: 'if(due, due <= today() + "14d" && due >= today(), false)'
+  n_tickets: 'if(tickets, list(tickets).length, 0)'
+  jira: 'if(tickets, list(tickets).map(link("https://jira.example.com/browse/" + value, value)), "")'
+  next: 'if(next_action, html(escapeHTML(next_action).replace(/([A-Z][A-Z0-9]*-[0-9]+)/g, "<a href=''https://jira.example.com/browse/$1''>$1</a>")), "")'
+  waiting: 'if(waiting_on, html(escapeHTML(waiting_on).replace(/([A-Z][A-Z0-9]*-[0-9]+)/g, "<a href=''https://jira.example.com/browse/$1''>$1</a>")), "")'
+properties:
+  file.name:
+    displayName: Workstream
+  formula.icon:
+    displayName: ' '
+  status:
+    displayName: Status
+  next_action:
+    displayName: 'Next action (mine)'
+  waiting_on:
+    displayName: Waiting on
+  tickets:
+    displayName: Tickets
+  last_touch:
+    displayName: Last touch
+  formula.idle:
+    displayName: 'Idle (d)'
+  formula.n_tickets:
+    displayName: '#'
+  due:
+    displayName: Due
+  area:
+    displayName: Area
+  formula.jira:
+    displayName: Tickets
+  formula.next:
+    displayName: 'Next action (mine)'
+  formula.waiting:
+    displayName: Waiting on
+views:
+- type: table
+  name: Board
+  filters:
+    and:
+    - 'status != "parked"'
+    - 'status != "done"'
+  order:
+  - formula.icon
+  - file.name
+  - formula.next
+  - formula.waiting
+  - formula.idle
+  - due
+  - formula.jira
+  sort:
+  - property: formula.rank
+    direction: ASC
+  - property: row
+    direction: ASC
+  columnSize:
+    formula.icon: 36
+    file.name: 220
+    formula.next: 420
+    formula.waiting: 200
+    formula.idle: 70
+    note.due: 100
+    formula.jira: 260
+- type: table
+  name: Needs attention
+  filters:
+    or:
+    - 'status == "stalled"'
+    - 'formula.stale == true'
+    - 'next_action == "TBD"'
+  order:
+  - formula.icon
+  - file.name
+  - formula.next
+  - formula.idle
+  - formula.waiting
+  sort:
+  - property: formula.idle
+    direction: DESC
+  columnSize:
+    formula.icon: 36
+    file.name: 220
+    formula.next: 460
+    formula.idle: 70
+- type: table
+  name: Due soon
+  filters:
+    and:
+    - 'formula.soon == true'
+  order:
+  - due
+  - formula.icon
+  - file.name
+  - formula.next
+  sort:
+  - property: due
+    direction: ASC
+- type: cards
+  name: Cards
+  filters:
+    and:
+    - 'status != "parked"'
+    - 'status != "done"'
+  order:
+  - file.name
+  - formula.next
+  - formula.waiting
+  - formula.idle
+  - formula.jira
+  sort:
+  - property: formula.rank
+    direction: ASC
+  - property: row
+    direction: ASC
+  imageAspectRatio: 0
+- type: table
+  name: Parked
+  filters:
+    and:
+    - 'status == "parked"'
+  order:
+  - file.name
+  - formula.next
+  - formula.jira
+  - last_touch
+  sort:
+  - property: row
+    direction: ASC
+- type: table
+  name: All
+  order:
+  - row
+  - formula.icon
+  - status
+  - file.name
+  - area
+  - next_action
+  - waiting_on
+  - formula.idle
+  - due
+  - formula.n_tickets
+  - tickets
+  - last_touch
+  sort:
+  - property: row
+    direction: ASC
+- type: cards
+  name: Stalled
+  filters:
+    and:
+    - 'status == "stalled"'
+  order:
+  - file.name
+  - formula.next
+  - formula.waiting
+  - formula.idle
+  - formula.jira
+  sort:
+  - property: row
+    direction: ASC
+  imageAspectRatio: 0
+- type: cards
+  name: Waiting
+  filters:
+    and:
+    - 'status == "waiting"'
+  order:
+  - file.name
+  - formula.next
+  - formula.waiting
+  - formula.idle
+  - formula.jira
+  sort:
+  - property: row
+    direction: ASC
+  imageAspectRatio: 0
+- type: cards
+  name: Moving
+  filters:
+    and:
+    - 'status == "moving"'
+  order:
+  - file.name
+  - formula.next
+  - formula.waiting
+  - formula.idle
+  - formula.jira
+  sort:
+  - property: row
+    direction: ASC
+  imageAspectRatio: 0
+- type: cards
+  name: Parked col
+  filters:
+    and:
+    - 'status == "parked"'
+  order:
+  - file.name
+  - formula.next
+  - formula.waiting
+  - formula.idle
+  - formula.jira
+  sort:
+  - property: row
+    direction: ASC
+  imageAspectRatio: 0
